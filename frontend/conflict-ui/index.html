@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document Conflicts</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Document Conflicts</h1>
+        <p>Detected contradictions between uploaded documents</p>
+    </header>
+
+
+    <main>
+
+        <div id="status" class="status">
+            Loading conflicts...
+        </div>
+
+        <div id="conflicts-container"></div>
+
+    </main>
+
+
+    <!-- Delete Confirmation Modal -->
+
+    <div id="delete-modal" class="modal hidden">
+
+        <div class="modal-overlay"></div>
+
+        <div class="modal-box">
+
+            <h2>Delete Document?</h2>
+
+            <p>
+                Are you sure you want to delete
+                <strong id="delete-filename"></strong>?
+            </p>
+
+            <p class="warning-text">
+                This will also remove its vectors and related conflicts.
+            </p>
+
+            <div class="modal-actions">
+
+                <button
+                    id="cancel-delete"
+                    class="cancel-button"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    id="confirm-delete"
+                    class="confirm-delete-button"
+                >
+                    Delete
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Documents</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+
+    <div>
+        <h1>Documents</h1>
+        <p>Manage all uploaded documents</p>
+    </div>
+
+    <button
+        id="delete-all-button"
+        class="delete-all-button"
+    >
+        Delete All Documents
+    </button>
+
+</header>
+
+
+<main>
+
+    <div class="top-row">
+
+        <div>
+
+            <h2>Uploaded Documents</h2>
+
+            <p
+                id="document-count"
+                class="document-count"
+            >
+                Loading documents...
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div id="documents-container"></div>
+
+</main>
+
+
+<!-- DELETE MODAL -->
+
+<div
+    id="delete-modal"
+    class="modal hidden"
+>
+
+    <div class="modal-overlay"></div>
+
+
+    <div class="modal-box">
+
+        <div class="modal-icon">
+            !
+        </div>
+
+
+        <h2 id="modal-title">
+            Delete Document?
+        </h2>
+
+
+        <p id="modal-message"></p>
+
+
+        <p
+            id="modal-warning"
+            class="warning-text"
+        >
+            This will also remove its vectors
+            and related conflicts.
+        </p>
+
+
+        <div class="modal-actions">
+
+            <button
+                id="cancel-button"
+                class="cancel-button"
+            >
+                Cancel
+            </button>
+
+
+            <button
+                id="confirm-button"
+                class="confirm-button"
+            >
+                Delete
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
