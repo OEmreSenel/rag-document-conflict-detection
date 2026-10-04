@@ -49,20 +49,21 @@ Qdrant Vector Database
     |                      |
     v                      v
 Similarity Search      RAG Question Answering
-    |
-    v
-Qwen 3.5 9B
-    |
-    v
-LLM Conflict Detection
+    |                      |
+    v                      v
+Qwen 3.5 9B           Qwen 3.5 9B
+    |                      |
+    v                      v
+LLM Conflict Detection   Answer + Sources
     |
     v
 SQLite Conflict Database
     |
     v
 Conflict Detection UI
+```
 
-Technologies
+## Technologies
 
 - Python
 - FastAPI
@@ -82,8 +83,9 @@ Technologies
 - Vector Embeddings
 - Large Language Models (LLMs)
 
-Project Structure
+## Project Structure
 
+```text
 rag-project/
 │
 ├── backend/
@@ -121,78 +123,118 @@ rag-project/
 ├── .gitignore
 ├── README.md
 └── requirements.txt
+```
 
-API Endpoints
+## API Endpoints
 
-Health Check
+### Health Check
 
-GET /
+`GET /`
+
 Returns a message confirming that the backend is running.
 
-Upload Documents
+### Upload Documents
 
-POST /documents/upload
+`POST /documents/upload`
+
 Uploads and processes one or more PDF, DOCX, or TXT documents.
 
-List Documents
+### List Documents
 
-GET /documents
+`GET /documents`
+
 Returns all uploaded documents.
 
-Delete a Document
+### Delete a Document
 
-DELETE /documents/{filename}
+`DELETE /documents/{filename}`
+
 Deletes a document together with its stored vectors and related conflicts.
 
-Delete All Documents
+### Delete All Documents
 
-DELETE /documents/all
+`DELETE /documents/all`
+
 Removes all uploaded documents, vectors, and conflicts.
 
-Get Conflicts
+### Get Conflicts
 
-GET /conflicts
+`GET /conflicts`
+
 Returns detected document conflicts.
 
-Ask a Question
+### Ask a Question
 
-POST /ask
+`POST /ask`
+
 Uses semantic search and Qwen 3.5 9B to answer questions using the uploaded documents as context.
 
-Running the Project
+## Running the Project
 
-1. Clone the repository
-git clone <YOUR-GITHUB-REPOSITORY-URL>
-cd rag-project
+### 1. Clone the repository
 
-2. Create a virtual environment
+```bash
+git clone https://github.com/OEmreSenel/rag-document-conflict-detection.git
+cd rag-document-conflict-detection
+```
+
+### 2. Create a virtual environment
+
+```bash
 python -m venv .venv
+```
 
 Activate it on Windows:
+
+```bash
 .venv\Scripts\activate
+```
 
-3. Install dependencies
+### 3. Install dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
-4. Start Qdrant
-Make sure a Qdrant instance is running on: localhost:6333
+### 4. Start Qdrant
 
-5. Install and run Ollama
-Make sure Ollama is installed and the required model is available: ollama pull qwen3.5:9b
+Make sure a Qdrant instance is running on:
 
-6. Start the FastAPI backend
+```text
+localhost:6333
+```
+
+### 5. Install and run Ollama
+
+Make sure Ollama is installed and the required model is available:
+
+```bash
+ollama pull qwen3.5:9b
+```
+
+### 6. Start the FastAPI backend
+
+```bash
 cd backend
 uvicorn app.main:app --reload
+```
 
 The API will be available at:
+
+```text
 http://127.0.0.1:8000
+```
 
 FastAPI's interactive API documentation is available at:
-http://127.0.0.1:8000/docs
 
-Conflict Detection
+```text
+http://127.0.0.1:8000/docs
+```
+
+## Conflict Detection
 
 When a document is uploaded:
+
 1. The document text is extracted.
 2. OCR is used where required for scanned document content.
 3. The extracted text is divided into chunks.
@@ -203,9 +245,11 @@ When a document is uploaded:
 8. Detected contradictions are stored in SQLite.
 9. The frontend displays the conflicting documents, statements, locations, and confidence scores.
 
-RAG Question Answering
+## RAG Question Answering
 
-The /ask endpoint uses the following process:
+The `/ask` endpoint uses the following process:
+
+```text
 User Question
       |
       v
@@ -222,12 +266,14 @@ Qwen 3.5 9B
       |
       v
 Answer + Sources
+```
 
 If the uploaded documents do not contain relevant information, the system returns an "I don't know" response instead of generating an unsupported answer.
 
-Document Management
+## Document Management
 
 The document management interface allows users to:
+
 - Upload PDF, DOCX, and TXT documents
 - Extract text from uploaded documents
 - Use OCR to extract text from scanned documents
@@ -238,21 +284,23 @@ The document management interface allows users to:
 - Automatically remove associated vector data
 - Automatically remove related conflict records
 
-Security
+## Security
 
-Sensitive configuration files and local data are excluded from version control using .gitignore.
+Sensitive configuration files and local data are excluded from version control using `.gitignore`.
 
 Do not commit:
+
 - API keys
-- .env files
+- `.env` files
 - Virtual environments
 - Local databases
 - Qdrant storage
 - Uploaded documents containing sensitive information
 
-Future Improvements
+## Future Improvements
 
 Possible future improvements include:
+
 - More advanced document parsing
 - Improved OCR processing
 - Improved chunking strategies
@@ -264,7 +312,9 @@ Possible future improvements include:
 - Docker-based deployment
 - Cloud-based vector storage
 
-Author
+## Author
+
 Oguzhan Emre Senel
-Computer Science Student
+
+Computer Science Student  
 University of Surrey
